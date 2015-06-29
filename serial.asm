@@ -129,10 +129,10 @@ synch_midi:
 +:
   ld      l,a
   ld      a,(hl)
-  and     $F0			;Ignore channel
-  cp      $90			;Note on any channel
+  and     $F0			;Ignore channel (second half of the byte)
+  cp      $90			;Note on cmd, any channel
   jr      z,midi_noteon
-  cp      $80
+  cp      $80			;Note off cmd
   jr      z,midi_noteoff
   ld      a,b
   inc     a

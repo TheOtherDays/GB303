@@ -63,7 +63,7 @@ play_midi:
   bit    1,a
   jr     z,++
   xor    a			;Note off
-  ldh    ($1A),a
+  ldh    ($1A),a	;CH3 off
   inc    a
   ld     (WAVEMUTE),a
   ret
@@ -74,7 +74,7 @@ play_midi:
   
   call   resetlfo
 
-  ld     a,(MIDINOTENB)
+  ld     a,(MIDINOTENB) ;synth accepts notes from 48 to 83
   cp     48
   jr     c,++			;Low limit
   cp     84
